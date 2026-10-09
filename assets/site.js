@@ -52,6 +52,20 @@
     if (mq.addEventListener) mq.addEventListener('change', drawAll);
   }
 
+  // Pulsante "torna in cima": compare dopo un po' di scorrimento.
+  var toTop = document.querySelector('.to-top');
+  if (toTop) {
+    var onScroll = function () { toTop.classList.toggle('is-visible', window.scrollY > 400); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    toTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      var skip = document.querySelector('.brand');
+      if (skip) skip.focus({ preventScroll: true });
+    });
+  }
+
   // Menu mobile: chiudi con Esc o cliccando fuori.
   var menu = document.querySelector('.menu');
   if (menu) {
