@@ -349,3 +349,14 @@ footer .brandline { font-family: var(--f-display); font-weight: 800; font-size: 
 @media (max-width: 680px) { .to-top { width: 44px; height: 44px; } }
 @media (prefers-reduced-motion: reduce) { .to-top { transition: none; } }
 
+/* Selettore tema chiaro/scuro */
+:root[data-theme="light"] { color-scheme: light; }
+.nav .wrap { justify-content: flex-start; }
+.brand { margin-right: auto; }
+.theme-toggle { flex: none; width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; padding: 0; background: transparent; color: var(--ink); border: 1.5px solid var(--ink); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.theme-toggle:hover { background: var(--ink); color: var(--paper); }
+.theme-toggle .ico-sun { display: none; }
+.theme-toggle.is-dark .ico-sun { display: block; }
+.theme-toggle.is-dark .ico-moon { display: none; }
+@media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
+

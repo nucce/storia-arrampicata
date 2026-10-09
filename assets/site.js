@@ -48,9 +48,38 @@
   if (canvases.length) {
     drawAll();
     var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(drawAll, 150); });
-    var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    if (mq.addEventListener) mq.addEventListener('change', drawAll);
   }
+
+  // Tema chiaro/scuro: di base segue il sistema; la scelta dell'utente resta salvata.
+  // Se la scelta coincide con il tema di sistema, si torna a seguire il sistema.
+  var root = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  var themeBtn = document.querySelector('.theme-toggle');
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    return t ? t === 'dark' : mq.matches;
+  }
+  function syncThemeBtn() {
+    if (!themeBtn) return;
+    var label = isDark() ? 'Passa al tema chiaro' : 'Passa al tema scuro';
+    themeBtn.setAttribute('aria-label', label);
+    themeBtn.title = label;
+    themeBtn.classList.toggle('is-dark', isDark());
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      var followSystem = (next === 'dark') === mq.matches;
+      if (followSystem) root.removeAttribute('data-theme'); else root.setAttribute('data-theme', next);
+      try { if (followSystem) localStorage.removeItem('tema'); else localStorage.setItem('tema', next); } catch (e) {}
+      syncThemeBtn();
+      drawAll();
+    });
+    syncThemeBtn();
+  }
+  function onSystemChange() { syncThemeBtn(); drawAll(); }
+  if (mq.addEventListener) mq.addEventListener('change', onSystemChange);
+  else if (mq.addListener) mq.addListener(onSystemChange);
 
   // Pulsante "torna in cima": compare dopo un po' di scorrimento.
   var toTop = document.querySelector('.to-top');
