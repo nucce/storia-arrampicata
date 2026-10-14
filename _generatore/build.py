@@ -748,6 +748,8 @@ def home_html(page, people, order):
          [('1910 circa', 'Il moschettone entra in arrampicata con Otto Herzog e Hans Dülfer'), ('1967', 'Robbins sale Nutcracker solo con i nut: nasce il clean climbing'), ('1978', 'Il Friend di Ray Jardine protegge le fessure parallele')]),
         ('gradi', 'Gradi', "Una scala nata chiusa al sesto grado e poi aperta verso l'alto.",
          [('1925–26', 'Welzenbach e Rudatis codificano la prima scala delle difficoltà'), ('1977', 'La UIAA apre la scala al settimo grado'), ('Oggi', 'La scala francese, aperta per natura, arriva al 9c')]),
+        ('piccozze', 'Piccozze', "Dal bastone ferrato dei pastori all'attrezzo che si aggancia alla roccia.",
+         [('1840', 'Secondo Grivel nasce la piccozza: alpenstock e ascia in un solo attrezzo'), ('1971', 'Il Terrordactyl di MacInnes: la becca inclinata della piolet-traction'), ('1994', 'Jeff Lowe sale Octopussy: nascono misto moderno e dry tooling')]),
     ]
     gear = ''
     for slug, t, d, steps in gear_cols:
@@ -816,7 +818,7 @@ def home_html(page, people, order):
   <div class="wrap">
     <div class="sec-head">
       <h2 id="gear-title">Materiali e tecniche</h2>
-      <p>Ogni salto di difficoltà ha avuto un attrezzo dietro. Scarpe, corde, protezioni e la scala dei gradi, dalle prime invenzioni a oggi.</p>
+      <p>Ogni salto di difficoltà ha avuto un attrezzo dietro. Scarpe, corde, protezioni, la scala dei gradi e le piccozze, dalle prime invenzioni a oggi.</p>
     </div>
     <ul class="gear-grid">{gear}</ul>
   </div>
