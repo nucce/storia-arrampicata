@@ -126,7 +126,7 @@ h1 .thin { font-weight: 600; color: var(--ink-2); }
 
 /* Materiali e tecniche */
 .gear { padding-block: clamp(56px, 8vw, 96px); border-bottom: 1px solid var(--line); }
-.gear-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 28px; }
+.gear-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 28px; }
 .gear-col { display: grid; grid-template-rows: auto auto 1fr auto; gap: 12px; min-width: 0; }
 .gear-col h3 { font-family: var(--f-display); font-weight: 800; text-transform: uppercase; font-size: 1.6rem; line-height: 1; margin: 0; padding-bottom: 10px; border-bottom: 1.5px solid var(--ink); }
 .gear-col > p { margin: 0; font-size: .95rem; color: var(--ink-2); }
@@ -137,7 +137,7 @@ h1 .thin { font-weight: 600; color: var(--ink-2); }
 .steps .when { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .04em; color: var(--rope); font-variant-numeric: tabular-nums; }
 .steps .what { font-size: .95rem; line-height: 1.4; }
 @media (max-width: 980px) { .gear-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .gear-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .gear-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; } .gear-col { grid-template-rows: auto auto auto; } .gear-col .steps { display: none; } }
 
 /* Protagonisti teaser */
 .people { padding-block: clamp(56px, 8vw, 96px); }

@@ -36,11 +36,11 @@ PEOPLE_ORDER = {
     5: 'john-gill royal-robbins warren-harding reinhold-messner alessandro-gogna gian-piero-motti john-bachar gian-carlo-grassi',
     6: 'heinz-mariacher luisa-iovane manolo roberto-bassi patrick-edlinger jerry-moffatt renato-casarotto patrick-berhault wolfgang-gullich catherine-destivelle lynn-hill fratelli-huber chris-sharma hansjorg-auer alex-honnold tommy-caldwell adam-ondra margo-hayes',
 }
-MATERIALI = ['calzature', 'corde', 'protezioni', 'gradi']
+MATERIALI = ['calzature', 'corde', 'protezioni', 'gradi', 'piccozze']
 DISCIPLINE = ['alpinismo', 'arrampicata-libera', 'sportiva', 'bouldering', 'free-solo', 'cascate']
 DISC_LABEL = {'alpinismo': 'Alpinismo', 'arrampicata-libera': 'Arrampicata libera', 'sportiva': 'Sportiva e gare',
               'bouldering': 'Bouldering', 'free-solo': 'Free solo', 'cascate': 'Cascate di ghiaccio'}
-MAT_LABEL = {'calzature': 'Calzature', 'corde': 'Corde', 'protezioni': 'Protezioni', 'gradi': 'Gradi'}
+MAT_LABEL = {'calzature': 'Calzature', 'corde': 'Corde', 'protezioni': 'Protezioni', 'gradi': 'Gradi', 'piccozze': 'Piccozze'}
 # Materiali e tecniche che entrano in scena in ciascuna fase.
 PHASE_GEAR = {
     1: [('corde', 'Corde di canapa'), ('calzature', 'Scarponi chiodati'), ('gradi', 'Nessuna scala: si misura la vetta')],
@@ -555,7 +555,7 @@ def main():
             add_sources(it['sources'], page, it['title'])
         # indice di sezione
         page = '%s/index.html' % section
-        intro = {'materiali': "Ogni salto di difficoltà ha avuto un attrezzo dietro, e ogni attrezzo ha aperto un dibattito su cosa fosse giusto usare. Scarpe, corde, protezioni e la scala dei gradi, dalle prime invenzioni a oggi.",
+        intro = {'materiali': "Ogni salto di difficoltà ha avuto un attrezzo dietro, e ogni attrezzo ha aperto un dibattito su cosa fosse giusto usare. Scarpe, corde, protezioni, la scala dei gradi e le piccozze, dalle prime invenzioni a oggi.",
                  'discipline': "Dall'alpinismo delle grandi vette al boulder di pochi metri: i modi di arrampicare che sono nati lungo la strada, ciascuno con le sue regole, la sua etica e i suoi protagonisti."}[section]
         rows = ''.join('<li><a href="%s"><h3>%s</h3><p>%s</p></a></li>' % (rel(page, '%s/%s.html' % (section, k)), E(items[k]['title']), E(items[k].get('summary', ''))) for k in present)
         main_html = page_head(page, [(sec_title, None)], sec_title, eyebrow='%d approfondimenti' % len(present), lede=intro, seed=4 if section == 'materiali' else 5)
@@ -748,6 +748,8 @@ def home_html(page, people, order):
          [('1910 circa', 'Il moschettone entra in arrampicata con Otto Herzog e Hans Dülfer'), ('1967', 'Robbins sale Nutcracker solo con i nut: nasce il clean climbing'), ('1978', 'Il Friend di Ray Jardine protegge le fessure parallele')]),
         ('gradi', 'Gradi', "Una scala nata chiusa al sesto grado e poi aperta verso l'alto.",
          [('1925–26', 'Welzenbach e Rudatis codificano la prima scala delle difficoltà'), ('1977', 'La UIAA apre la scala al settimo grado'), ('Oggi', 'La scala francese, aperta per natura, arriva al 9c')]),
+        ('piccozze', 'Piccozze', "Dal bastone ferrato dei pastori all'attrezzo che si aggancia alla roccia.",
+         [('1840', 'Secondo Grivel nasce la piccozza: alpenstock e ascia in un solo attrezzo'), ('1971', 'Il Terrordactyl di MacInnes: la becca inclinata della piolet-traction'), ('1994', 'Jeff Lowe sale Octopussy: nascono misto moderno e dry tooling')]),
     ]
     gear = ''
     for slug, t, d, steps in gear_cols:
@@ -816,7 +818,7 @@ def home_html(page, people, order):
   <div class="wrap">
     <div class="sec-head">
       <h2 id="gear-title">Materiali e tecniche</h2>
-      <p>Ogni salto di difficoltà ha avuto un attrezzo dietro. Scarpe, corde, protezioni e la scala dei gradi, dalle prime invenzioni a oggi.</p>
+      <p>Ogni salto di difficoltà ha avuto un attrezzo dietro. Scarpe, corde, protezioni, la scala dei gradi e le piccozze, dalle prime invenzioni a oggi.</p>
     </div>
     <ul class="gear-grid">{gear}</ul>
   </div>
@@ -852,7 +854,7 @@ def sitemap_html(page, people, order, mats, discs):
             '<li><a href="%s">%s</a></li>' % (r('protagonisti/%s.html' % s), E(people[s]['title'])) for s in order if people[s]['phase'] == n))
     total = len(PAGES) + 1
     head = page_head(page, [('Mappa del sito', None)], 'Mappa del sito',
-                     lede='Tutte le pagine del sito, sezione per sezione: le sei epoche, %d protagonisti, quattro approfondimenti su materiali e tecniche, sei discipline e le pagine di servizio.' % len(order), seed=13)
+                     lede='Tutte le pagine del sito, sezione per sezione: le sei epoche, %d protagonisti, cinque approfondimenti su materiali e tecniche, sei discipline e le pagine di servizio.' % len(order), seed=13)
     return head + f'''<div class="wrap map-body">
   <div class="map-row">
     <section class="map-sec"><h2>Epoche <span class="n">7 pagine</span></h2><ul class="map-list">{ep}</ul></section>
